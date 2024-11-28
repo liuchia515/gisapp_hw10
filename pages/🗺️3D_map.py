@@ -8,16 +8,5 @@ with st.expander("See source code"):
   with st.echo():
     m=leafmap.Map(center[23.5,121],zoom=7)
     path="https://github.com/liuchia515/gisapp_hw10/blob/main/difference_result.geojson"
-    m.add_geojson(
-      data,
-      layer_type="fill-extrusion",
-      name="difference",
-      paint={
-        "fill-extrusion-color": ["get", "color"],
-        "fill-extrusion-height": ["*", ["get", "difference"], 50],
-        "fill-extrusion-opacity": 0.8,
-      },
-      layer_name="difference",
-      add_legend=True,
-    )
+    m.add_geojson(data,layer_name="difference",add_legend=True)
 m.to_streamlit(height=500)
