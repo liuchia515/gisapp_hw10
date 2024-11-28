@@ -1,13 +1,23 @@
-import os
-import altair as alt
-import numpy as np
-import pandas as pd
-import pydeck as pdk
+import leafmap.foliumap as leafmap
 import streamlit as st
 
-st.set_page_config(layout="wide", page_title="taiwan earthquake 3d map")
-path="https://github.com/liuchia515/gisapp_hw10/blob/main/difference_result.geojson"
+st.set_page_config(layout="wide")
+st.title("taiwan earthquake 3d map")
 
-m = leafmap.Map(center=[23.5, 121], zoom=7)
-m.add_geojson(path,layer_name="difference")
+with st.expander("See source code"):
+  with st.echo():
+    m=leafmap.Map(center[23.5,121],zoom=7)
+    path="https://github.com/liuchia515/gisapp_hw10/blob/main/difference_result.geojson"
+    m.add_geojson(
+      data,
+      layer_type="fill-extrusion",
+      name="difference",
+      paint={
+        "fill-extrusion-color": ["get", "color"],
+        "fill-extrusion-height": ["*", ["get", "difference"], 50],
+        "fill-extrusion-opacity": 0.8,
+      },
+      layer_name="difference"
+      add_legend=True,
+    )
 m.to_streamlit(height=500)
