@@ -6,8 +6,7 @@ import numpy as np
 import pandas as pd
 import pydeck as pdk
 
-st.set_page_config(layout="wide")
-st.title("taiwan earthquake map")
+st.title("map")
 
 with st.expander("See source code"):
   with st.echo():
