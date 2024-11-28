@@ -11,7 +11,7 @@ st.title("taiwan earthquake map")
 
 with st.expander("See source code"):
   with st.echo():
-    m=leafmap.Map(center=[23.5,121],zoom=7)
-    path="https://github.com/liuchia515/gisapp_hw10/blob/main/difference_result.geojson"
-    m.add_geojson(path,name="difference")
+    m=leafmap.Map(center=[-123.13, 49.254], zoom=11)
+    path="https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/geojson/vancouver-blocks.json"
+    m.add_geojson(path,name="valuePerSqm")
 m.to_streamlit(height=500)
