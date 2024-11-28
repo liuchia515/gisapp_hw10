@@ -2,7 +2,7 @@ import leafmap.foliumap as leafmap
 import streamlit as st
 
 st.set_page_config(layout="wide")
-st.title("taiwan earthquake 3d map")
+st.title("taiwan earthquake map")
 
 with st.expander("See source code"):
   with st.echo():
