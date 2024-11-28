@@ -10,7 +10,7 @@ st.title("map")
 
 with st.expander("See source code"):
   with st.echo():
-    m=leafmap.Map(center=[-123.13, 49.254], zoom=11)
-    path="https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/geojson/vancouver-blocks.json"
+    m=leafmap.Map(center=[23.5, 121], zoom=7)
+    path="https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
     m.add_geojson(path,name="valuePerSqm")
 m.to_streamlit(height=500)
