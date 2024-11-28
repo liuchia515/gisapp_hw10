@@ -17,7 +17,7 @@ with st.expander("See source code"):
         "fill-extrusion-height": ["*", ["get", "difference"], 50],
         "fill-extrusion-opacity": 0.8,
       },
-      layer_name="difference"
+      layer_name="difference",
       add_legend=True,
     )
 m.to_streamlit(height=500)
