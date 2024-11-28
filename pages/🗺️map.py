@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import pydeck as pdk
 
+st.set_page_config(layout="wide")
 st.title("map a")
 
 with st.expander("See source code"):
