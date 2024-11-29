@@ -4,34 +4,30 @@ import pandas as pd
 
 st.set_page_config(layout="wide")
 st.title("🗺️map3")
-path = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv"
-data = pd.read_csv(
-    "pages/GDMScatalog.csv",
-    header=0,
-    names=["date","time","lat","lon","depth","ML",],
-)
 
-point_layer = pydeck.Layer(
-    "ScatterplotLayer",
-    data=data,
-    id="ML",
-    get_position=["lon", "lat"],
-    get_color="[255, 75, 75]",
-    pickable=True,
-    auto_highlight=True,
-    get_radius="size",
-)
+@st.cache(persist=True)
+def load_data(nrows):
+    df=pd.read_csv("https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv",nrows=nrows)
+    return df
+df=load_data(1000)
 
-view_state = pydeck.ViewState(
-    latitude=23.5, longitude=121, controller=True, zoom=7, pitch=30
-)
-
-chart = pydeck.Deck(
-    point_layer,
-    initial_view_state=view_state,
-    tooltip={"text": "{ML}, {depth}\ntime: {date},{time}"},
-)
-
-event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object")
-
-event.selection
+st.pydeck_chart(pdk.Deck(
+    map_style=None,
+    initial_view_state={
+        "latitude":"lat",
+        "lontitude":"lon",
+        "zoom":zoom,
+        "pitch":50,
+    },
+    layers=[
+        pdk.Layer(
+            "HexagonLayer",
+            data=df[["ML","lat","lon"],
+            get_position=["lat","lon"],
+            radius=200,
+            elevation_scale=4,
+            elevation_range=[0,10],
+            pickable=True,
+            extruded-True,
+        ),
+    ]))
