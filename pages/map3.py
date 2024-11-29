@@ -40,5 +40,6 @@ def map_3d(data,zoom):
         )
     )
 data = load_data()
+data = map_3d()
 st.title("3D GeoJSON 地圖展示")
 map_3d(data, zoom=7)
