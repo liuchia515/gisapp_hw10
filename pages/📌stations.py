@@ -25,4 +25,4 @@ st.markdown(mardown2)
 
 data = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/station.csv"
 df = pd.read_csv(data) #path folder of the data file
-st.write(df)
+st.dataframe(df)
