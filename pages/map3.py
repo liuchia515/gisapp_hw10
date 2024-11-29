@@ -3,10 +3,8 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 
-chart_data = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=["lat", "lon"],
-)
+url = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
+chart_data = pd.DataFrame(url)
 
 st.pydeck_chart(
     pdk.Deck(
