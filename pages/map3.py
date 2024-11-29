@@ -6,8 +6,12 @@ import geopandas as gpd
 
 st.set_page_config(layout="wide")
 st.title("🗺️map3")
-url = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
-data=gpd.read_file(url)
+
+@st.cache_resource
+def load_data():
+    url = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
+    data=gpd.read_file(url)
+    return data
 
 def map_3d(data,zoom):
     geojson = data.to_json
@@ -35,5 +39,6 @@ def map_3d(data,zoom):
             ],
         )
     )
+data = load_data()
 st.title("3D GeoJSON 地圖展示")
 map_3d(data, zoom=7)
