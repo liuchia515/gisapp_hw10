@@ -24,6 +24,5 @@ mardown2="測站資料表格"
 st.markdown(mardown2)
 
 data = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/station.csv"
-spectra = st.file_uploader(data, type={"csv", "txt"})
-spectra = pd.DataFrame(spectra_1_file)
-st.table(spectra_1)
+df = pd.read_csv(data) #path folder of the data file
+st.write(df)
