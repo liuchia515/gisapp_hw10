@@ -35,6 +35,14 @@ def load_data():
         st.write("檢查是否有缺失值:")
         st.write(data.isnull().sum())
 
+        # 顯示差異(difference)欄位的統計資訊
+        st.write("Difference 欄位的統計資訊:")
+        st.write(data['difference'].describe())
+
+        # 顯示顏色(color)欄位的統計資訊
+        st.write("Color 欄位的統計資訊:")
+        st.write(data['color'].describe())
+
         # 轉換顏色欄位為RGB格式
         def hex_to_rgb(hex_color):
             return mcolors.hex2color(hex_color)
@@ -56,9 +64,11 @@ def load_data():
 
 def map_3d(data, zoom):
     geojson = data.to_json()
+    map_style = "mapbox://styles/mapbox/light-v10"  # 更改為有效的 Mapbox 樣式
+
     st.write(
         pdk.Deck(
-            map_style="mapbox://styles/mapbox/light-v10",  # 更改為有效的 Mapbox 樣式
+            map_style=map_style,
             initial_view_state={
                 "latitude": data.geometry.centroid.y.mean(),
                 "longitude": data.geometry.centroid.x.mean(),
