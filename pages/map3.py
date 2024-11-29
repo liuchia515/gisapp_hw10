@@ -1,22 +1,40 @@
-import pydeck as pdk
 import streamlit as st
+import pandas as pd
+import numpy as np
+import pydeck as pdk
 
 st.set_page_config(layout="wide")
 st.title("🗺️map3")
-
 url = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
-INITIAL_VIEW_STATE = pdk.ViewState(latitude=23.5, longitude=121, zoom=7, max_zoom=16, pitch=45, bearing=0)
-geojson = pdk.Layer(
-  "GeoJsonLayer",
-  url,
-  opacity=0.8,
-  stroked=False,
-  filled=True,
-  extruded=True,
-  wireframe=True,
-  get_elevation="difference",
-  get_fill_color="color",
-  get_line_color=[255,255,255],
+
+chart_data = pd.DataFrame(url)
+st.pydeck_chart(
+    pdk.Deck(
+        map_style=None,
+        initial_view_state=pdk.ViewState(
+            latitude=23.5,
+            longitude=121,
+            zoom=7,
+            pitch=50,
+        ),
+        layers=[
+            pdk.Layer(
+                "HexagonLayer",
+                data=chart_data,
+                get_position="[lon, lat]",
+                radius=200,
+                elevation_scale=4,
+                elevation_range=[0, 1000],
+                pickable=True,
+                extruded=True,
+            ),
+            pdk.Layer(
+                "ScatterplotLayer",
+                data=chart_data,
+                get_position="[lon, lat]",
+                get_color="[200, 30, 0, 160]",
+                get_radius=200,
+            ),
+        ],
+    )
 )
-r=pdk.Deck(layers=geojson,initial_view_state=INITIAL_VIEW_STATE)
-r.to_html("geojson_layer.html")
