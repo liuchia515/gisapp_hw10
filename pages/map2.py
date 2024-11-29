@@ -34,7 +34,7 @@ def map_3d(data, zoom):
                     extruded=True,
                     get_fill_color="[255, 0, 0, 140]",
                     get_line_color="[0, 0, 0, 140]",
-                    get_elevation=["*", ["get", "difference"], 50],
+                    get_elevation=["*", ["get", "difference"]],
                     opacity=0.8,
                     parameters={"depthTestAgainstTerrain": True},
                 ),
