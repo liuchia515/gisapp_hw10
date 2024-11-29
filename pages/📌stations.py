@@ -22,6 +22,8 @@ m.to_streamlit(height=700)
 
 mardown2="測站資料表格"
 st.markdown(mardown2)
+
 data = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/station.csv"
-df = pd.DataFrame(data)
-st.dataframe(df)
+spectra = st.file_uploader(data, type={"csv", "txt"})
+spectra = pd.DataFrame(spectra_1_file)
+st.write(spectra_1)
