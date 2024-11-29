@@ -48,3 +48,6 @@ def map_3d(data, zoom):
 data = load_data()
 st.title("3D GeoJSON 地圖展示")
 map_3d(data, zoom=7)
+
+st.title("check")
+st.write(data['difference'].describe())
