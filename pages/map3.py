@@ -1,5 +1,5 @@
 import streamlit as st
-import pydeck
+import pydeck as pdk
 import pandas as pd
 
 st.set_page_config(layout="wide")
