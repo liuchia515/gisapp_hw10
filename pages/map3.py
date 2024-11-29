@@ -21,7 +21,17 @@ point_layer = pydeck.Layer(
     auto_highlight=True,
     get_radius="size",
 )
+
 view_state = pydeck.ViewState(
     latitude=23.5, longitude=121, controller=True, zoom=7, pitch=30
 )
 
+chart = pydeck.Deck(
+    point_layer,
+    initial_view_state=view_state,
+    tooltip={"text": "{ML}, {depth}\ntime: {date},{time}"},
+)
+
+event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object")
+
+event.selection
