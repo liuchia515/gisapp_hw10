@@ -14,3 +14,5 @@ st.header("region")
 m=leafmap.Map(minimap_control=True,center=[23.5, 121], zoom=7)
 m.add_basemap("OpenTopoMap")
 m.to_streamlit(height=500)
+
+st.image("ML_map.png", caption="ML_map")
