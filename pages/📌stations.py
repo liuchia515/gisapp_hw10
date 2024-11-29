@@ -1,6 +1,7 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
 import pandas as pd
+import numpy as np
 
 st.set_page_config(layout="wide")
 st.title("📌station point")
@@ -19,7 +20,8 @@ with st.expander("See source code"):
       ) 
 m.to_streamlit(height=700)
 
-mardown2="20180206地震各測站位置以及觀測數值表格"
+mardown2="測站資料表格"
 st.markdown(mardown2)
 data = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/station.csv"
-st.table(data)
+df = pd.DataFrame(data)
+st.dataframe(df)
