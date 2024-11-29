@@ -22,7 +22,7 @@ st.pydeck_chart(pdk.Deck(
     layers=[
         pdk.Layer(
             "HexagonLayer",
-            data=df[["ML","lat","lon"],
+            data=df[["ML","lat","lon"]],
             get_position=["lat","lon"],
             radius=200,
             elevation_scale=4,
