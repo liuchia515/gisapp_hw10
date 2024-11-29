@@ -19,4 +19,7 @@ with st.expander("See source code"):
       ) 
 m.to_streamlit(height=700)
 
+mardown2="20180206地震各測站位置以及觀測數值表格"
+st.markdown(mardown2)
+data = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/station.csv"
 st.table(data)
