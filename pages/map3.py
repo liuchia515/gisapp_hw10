@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 st.title("🗺️map3")
 path = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv"
 data = pd.read_csv(
-    path,
+    "GDMScatalog.csv",
     header=0,
     names=["date","time","lat","lon","depth","ML",],
 )
