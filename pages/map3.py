@@ -1,45 +1,27 @@
-import os
-import altair as alt
 import streamlit as st
+import pydeck
 import pandas as pd
-import numpy as np
-import pydeck as pdk
 
 st.set_page_config(layout="wide")
 st.title("🗺️map3")
-@st.cache_resource
-def load_data():
-  path = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv"
-  data = pd.read_csv(
+path = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv"
+data = pd.read_csv(
     path,
-    names=["date","time","lat","lon","depth","ML",], 
-    skiprows=1,
-  )
-  return data
+    header=0,
+    names=["date","time","lat","lon","depth","ML",],
+)
 
-def map(data, lat, lon, zoom):
-    st.write(
-        pdk.Deck(
-            map_style="mapbox://styles/mapbox/light-v9",
-            initial_view_state={
-                "latitude": lat,
-                "longitude": lon,
-                "zoom": zoom,
-                "pitch": 50,
-            },
-            layers=[
-                pdk.Layer(
-                    "HexagonLayer",
-                    data=data,
-                    get_position=["lon", "lat"],
-                    radius=100,
-                    elevation_scale=4,
-                    elevation_range=[0, 10],
-                    pickable=True,
-                    extruded=True,
-                ),
-            ],
-        )
-    )
-data = load_data()
-map(data,zoom=7)
+point_layer = pydeck.Layer(
+    "ScatterplotLayer",
+    data=data,
+    id="ML",
+    get_position=["lon", "lat"],
+    get_color="[255, 75, 75]",
+    pickable=True,
+    auto_highlight=True,
+    get_radius="size",
+)
+view_state = pydeck.ViewState(
+    latitude=23.5, longitude=121, controller=True, zoom=7, pitch=30
+)
+
