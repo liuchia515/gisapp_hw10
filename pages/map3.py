@@ -14,11 +14,11 @@ def load_data():
     return data
 
 def map_3d(data,zoom):
-    geojson = data.to_json
+    geojson = data.to_json()
     st.write(
         pdk.Deck(
             map_style=None,
-            initial_view_stste={
+            initial_view_state={
                 "latitude":data.geometry.centroid.y.mean(),
                 "longitude": data.geometry.centroid.x.mean(),
                 "zoom": zoom,
