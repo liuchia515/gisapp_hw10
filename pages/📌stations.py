@@ -15,5 +15,6 @@ with st.expander("See source code"):
         x="lon",
         y="lat",
         spin=True,
-      )
+      ) 
 m.to_streamlit(height=700)
+st.write(data)
