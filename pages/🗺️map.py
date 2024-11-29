@@ -17,3 +17,6 @@ with st.expander("See source code"):
     path = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
     m.add_geojson(path,layer_name="difference")
 m.to_streamlit(height=700)
+
+data = gpd.read_file(path)
+st.write(data)
