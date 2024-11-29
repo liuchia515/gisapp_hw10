@@ -42,3 +42,4 @@ def map(data, lat, lon, zoom):
         )
     )
 data = load_data()
+map(data,zoom=7)
