@@ -17,7 +17,7 @@ def map_3d(data, zoom):
 
     st.write(
         pdk.Deck(
-            map_style="mapbox://styles/mapbox/light-v9",
+            map_style=None,
             initial_view_state={
                 "latitude": data.geometry.centroid.y.mean(),
                 "longitude": data.geometry.centroid.x.mean(),
@@ -34,12 +34,13 @@ def map_3d(data, zoom):
                     extruded=True,
                     get_fill_color="[255, 0, 0, 140]",
                     get_line_color="[0, 0, 0, 140]",
-                    get_elevation="properties.elevation",
+                    get_elevation=["*", ["get", "difference"], 50],
+                    opacity=0.8,
+                    parameters={"depthTestAgainstTerrain": True},
                 ),
             ],
         )
     )
-
 data = load_data()
 st.title("3D GeoJSON 地圖展示")
 map_3d(data, zoom=7)
