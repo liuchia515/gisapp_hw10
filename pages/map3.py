@@ -23,7 +23,7 @@ def map_3d(data,zoom):
             layers=[
                 pdk.Layer(
                     "GeoJsonLayer",
-                    data=geojson_data,
+                    data=geojson,
                     pickable=True,
                     stroked=False,
                     filled=True,
