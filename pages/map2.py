@@ -10,7 +10,6 @@ st.title("🗺️map2")
 def load_data():
     url = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
     data = gpd.read_file(url)
-    data["elevation"] = data["difference"] * 50
     return data
 
 def map_3d(data, zoom):
@@ -34,7 +33,7 @@ def map_3d(data, zoom):
                     filled=True,
                     extruded=True,
                     get_fill_color=["get", "color"],
-                    get_elevation="elevation",
+                    get_elevation=["get", "difference"],
                     opacity=0.8,
                     parameters={"depthTestAgainstTerrain": True},
                 ),
