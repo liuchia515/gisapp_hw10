@@ -17,5 +17,6 @@ with st.expander("See source code"):
         y="lat",
         spin=True,
       ) 
-st.dataframe(data)
 m.to_streamlit(height=700)
+
+st.table(data)
