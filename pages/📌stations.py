@@ -17,11 +17,5 @@ with st.expander("See source code"):
         y="lat",
         spin=True,
       ) 
+        st.dataframe(data)
 m.to_streamlit(height=700)
-
-@st.cache_resource
-def load_csv():
-    url = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/station.csv"
-    return data
-data = load_csv()
-st.dataframe(data)
