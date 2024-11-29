@@ -10,16 +10,26 @@ data = pd.read_csv(
   path,
   names=["date","time","lat","lon","depth","ML",], 
 )
-point_layer = pydeck.Layer(
-    "ScatterplotLayer",
-    data=data,
-    id="ML",
-    get_position=["lon", "lat"],
-    get_color="[255, 75, 75]",
-    pickable=True,
-    auto_highlight=True,
-    get_radius="size",
-)
-view_state = pydeck.ViewState(
-    latitude=23.5, longitude=121, controller=True, zoom=7, pitch=50
+st.pydeck_chart(
+    pdk.Deck(
+        map_style=None,
+        initial_view_state=pdk.ViewState(
+            latitude=23.5,
+            longitude=121,
+            zoom=7,
+            pitch=50,
+        ),
+        layers=[
+            pdk.Layer(
+                "HexagonLayer",
+                data=data,
+                get_position="[lon, lat]",
+                radius=200,
+                elevation_scale=4,
+                elevation_range=[0, 1000],
+                pickable=True,
+                extruded=True,
+            ),
+        ],
+    )
 )
