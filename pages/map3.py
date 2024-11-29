@@ -14,6 +14,7 @@ def load_data():
     
     try:
         data = gpd.read_file(url)
+        
         # 顯示資料的基本信息
         st.write("GeoDataFrame Info:")
         st.write(data.info())
@@ -22,9 +23,17 @@ def load_data():
         st.write("GeoDataFrame 前幾行:")
         st.write(data.head())
 
-        # 顯示 difference 欄位的描述
-        st.write("Difference 欄位的統計信息:")
-        st.write(data['difference'].describe())
+        # 檢查幾何列資料
+        st.write("幾何列資料:")
+        st.write(data.geometry.head())
+        
+        # 檢查幾何資料是否有效
+        st.write("幾何資料是否有效:")
+        st.write(data.geometry.is_valid.sum())
+        
+        # 檢查是否有缺失值
+        st.write("檢查是否有缺失值:")
+        st.write(data.isnull().sum())
 
         # 轉換顏色欄位為RGB格式
         def hex_to_rgb(hex_color):
@@ -35,6 +44,10 @@ def load_data():
         # 顯示 rgb_color 欄位的前幾行
         st.write("RGB 顏色的前幾行:")
         st.write(data[['color', 'rgb_color']].head())
+
+        # 清理無效幾何資料
+        data = data[data.geometry.is_valid]
+        data = data.dropna(subset=["geometry"])
 
         return data
     
