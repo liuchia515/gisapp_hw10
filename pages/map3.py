@@ -22,7 +22,7 @@ def map_3d(data, zoom):
     geojson = data.to_json()
     st.write(
         pdk.Deck(
-            map_style=None,
+            map_style="mapbox://styles/mapbox/light-v10",
             initial_view_state={
                 "latitude": data.geometry.centroid.y.mean(),
                 "longitude": data.geometry.centroid.x.mean(),
