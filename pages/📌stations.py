@@ -1,5 +1,6 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
+import pandas as pd
 
 st.set_page_config(layout="wide")
 st.title("📌station point")
@@ -17,4 +18,4 @@ with st.expander("See source code"):
         spin=True,
       ) 
 m.to_streamlit(height=700)
-st.write(data)
+st.dataframe(data)
