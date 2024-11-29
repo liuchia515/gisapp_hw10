@@ -17,7 +17,3 @@ with st.expander("See source code"):
     path = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
     m.add_geojson(path,layer_name="difference")
 m.to_streamlit(height=700)
-
-path = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/main/difference_result.geojson"
-df = pd.read_file(path)
-st.table(df)
