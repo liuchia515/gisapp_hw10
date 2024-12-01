@@ -24,6 +24,6 @@ with col1:
                 value="ML",
                 name="Heat map",
                 radius=20,
-                opacity=0.7,
+                opacity=0.5,
             )
     m.to_streamlit(height=700)
