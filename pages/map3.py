@@ -1,36 +1,19 @@
 import streamlit as st
-import pydeck as pdk
-import pandas as pd
+import leafmap.foliumap as leafmap
 
 st.set_page_config(layout="wide")
 st.title("🗺️map3")
 
-@st.cache(persist=True)
-def load_data(nrows):
-    df=pd.read_csv("https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv",nrows=nrows)
-    return df
-df=load_data(1000)
-
-st.pydeck_chart(
-    pdk.Deck(
-        map_style=None,
-        initial_view_state={
-            "latitude":"lat",
-            "lontitude":"lon",
-            "zoom":7,
-            "pitch":50,
-        },
-        layers=[
-            pdk.Layer(
-                "HexagonLayer",
-                data=df[["ML","lat","lon"]],
-                get_position=["lat","lon"],
-                radius=200,
-                elevation_scale=4,
-                elevation_range=[0,10],
-                pickable=True,
-                extruded=True,
-            ),
-        ]
-    )
-)
+with st.expander("See source code"):
+    with st.echo():
+        filepath = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv"
+        m = leafmap.Map(center=[23.5, 121], zoom=7)
+        m.add_heatmap(
+            filepath,
+            latitude="lat",
+            longitude="lon",
+            value="ML",
+            name="Heat map",
+            radius=20,
+        )
+m.to_streamlit(height=700)
