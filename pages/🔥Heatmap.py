@@ -2,7 +2,7 @@ import streamlit as st
 import leafmap.foliumap as leafmap
 
 st.set_page_config(layout="wide")
-st.title("🗺️map3")
+st.title("歷史地震Heatmap")
 
 col1,col2=st.columns([4,1])
 options = list(leafmap.basemaps.keys())
