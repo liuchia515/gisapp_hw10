@@ -15,5 +15,6 @@ with st.expander("See source code"):
             value="ML",
             name="Heat map",
             radius=20,
+            opacity=0.7,
         )
 m.to_streamlit(height=700)
