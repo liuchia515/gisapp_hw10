@@ -16,6 +16,7 @@ with col1:
         with st.echo():
             filepath = "https://raw.githubusercontent.com/liuchia515/gisapp_hw10/refs/heads/main/GDMScatalog.csv"
             m = leafmap.Map(center=[23.5, 121], zoom=7)
+            m.add_basemap(basemap)
             m.add_heatmap(
                 filepath,
                 latitude="lat",
